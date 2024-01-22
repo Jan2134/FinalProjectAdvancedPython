@@ -8,6 +8,7 @@ import click
 if __name__ == "__main__":
     from plotting import StressfactorAnalysis
     from plotting import plot_two_variables
+    from stats import calculate_correlation_matrix
 
 def load_dataset(filename):
     """
@@ -24,11 +25,11 @@ def load_dataset(filename):
 @click.option("-main", "--plot_main", is_flag=True, help="Plot the overview graph")
 @click.option("-var1", "--variable1", help="Name of the first variable to plot")
 @click.option("-var2", "--variable2", help="Name of the second variable to plot")
-def main(input, plotting, plot_main, variable1, variable2):
+@click.option("-corr", "--correlation", is_flag=True, help="Show correlation matrix")
+def main(input, plotting, plot_main, variable1, variable2, correlation):
     """
     Main execution function
     """
-    global count
     df = load_dataset(input)
 
     if plotting:
@@ -36,6 +37,8 @@ def main(input, plotting, plot_main, variable1, variable2):
             StressfactorAnalysis(df)
         if variable1 and variable2:
             plot_two_variables(df, variable1, variable2)
+    if correlation:
+        calculate_correlation_matrix(df)
 
 if __name__=="__main__":
     main()
