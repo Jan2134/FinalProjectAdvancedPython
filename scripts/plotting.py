@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 def StressfactorAnalysis(df):
 
@@ -98,10 +99,11 @@ def StressfactorAnalysis(df):
     ax.set(title="Number of students with negative experiences in the different fields")
     ax.bar_label(ax.containers[0])
     ax.set_ylabel("Number of students")
-    plt.show()
+    plt.savefig(os.path.join("outputs", "negative_experiences_plot.png"))
 
     #Choose which factor has the biggest impact on stress level within each variable subgroup.
     correl = df.corr()
+    print("Graph in output folder")
     print("In mental variables", round(correl.iloc[-1:,0:4].abs().max(),2).index.max().replace("_", " "), "has the biggest impact.")
     print("In physical variables", round(correl.iloc[-1:,4:8].abs().max(),2).index.max().replace("_", " "), "has the biggest impact.")
     print("In environmental variables", round(correl.iloc[-1:,8:12].abs().max(),2).index.max()), "has the biggest impact."

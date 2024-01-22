@@ -20,16 +20,17 @@ def load_dataset(filename):
 
 @click.command(short_help="Parser to import dataset")
 @click.option("-id", "--input", required=True, help="File to import")
-@click.option("-p", "--plotting", is_flag=True, help="Plotdata")
-def main(input, plotting):
+@click.option("-plot", "--plotting", is_flag=True, help="Plotdata")
+@click.option("-main", "--plot_main", is_flag=True, help="Plot the overview graph")
+def main(input, plotting, plot_main):
     """
     Main execution function
     """
     df = load_dataset(input)
-    print(df.shape)
 
     if plotting:
-        StressfactorAnalysis(df)
+        if plot_main:
+            StressfactorAnalysis(df)
 
 
 if __name__=="__main__":
