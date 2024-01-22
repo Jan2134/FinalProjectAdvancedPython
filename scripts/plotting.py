@@ -103,9 +103,23 @@ def StressfactorAnalysis(df):
 
     #Choose which factor has the biggest impact on stress level within each variable subgroup.
     correl = df.corr()
-    print("Graph in output folder")
+    print("\n\nGraph in output folder\n\n")
     print("In mental variables", round(correl.iloc[-1:,0:4].abs().max(),2).index.max().replace("_", " "), "has the biggest impact.")
     print("In physical variables", round(correl.iloc[-1:,4:8].abs().max(),2).index.max().replace("_", " "), "has the biggest impact.")
     print("In environmental variables", round(correl.iloc[-1:,8:12].abs().max(),2).index.max()), "has the biggest impact."
     print("In academic variables", round(correl.iloc[-1:,12:16].abs().max(),2).index.max().replace("_", " "), "has the biggest impact.")
     print("In social variables", round(correl.iloc[-1:,16:20].abs().max(),2).index.max().replace("_", " "), "has the biggest impact.")
+
+
+
+def plot_two_variables(df, variable1, variable2):
+    """
+    Function to plot two variables
+    """
+    plt.figure(figsize=(8, 6))
+    sns.scatterplot(x=variable1, y=variable2, data=df)
+    plt.title(f"Scatter Plot between {variable1} and {variable2}")
+    plt.xlabel(variable1)
+    plt.ylabel(variable2)
+    print("\n\nGraph in output folder\n\n")
+    plt.savefig(os.path.join("outputs", f"scatter_plot_{variable1}_{variable2}.png"))
