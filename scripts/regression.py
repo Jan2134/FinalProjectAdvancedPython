@@ -2,7 +2,6 @@
 Conduct regression analysis
 """
 
-import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
@@ -37,4 +36,4 @@ def perform_regression(df):
     plt.ylabel("Predicted Stress Level")
     plt.title("Actual vs. Predicted Stress Level")
     plt.savefig(os.path.join("outputs", "Regression.png"))
-    print("\n\Regression plot in output folder\n\n")
+    print("\n\nRegression plot in output folder\n\n")

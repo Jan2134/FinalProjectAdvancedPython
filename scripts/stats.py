@@ -31,7 +31,7 @@ def calculate_correlation_matrix(df, n=3):
     for column in correlation_matrix.columns:
         print(f"\nTop {n} correlations for column '{column}':")
         correlations = correlation_matrix[column].abs().sort_values(ascending=False)
-        top_correlations = correlations.index[1 : n + 1]  # Exclude self-correlation
+        top_correlations = correlations.index[1: n + 1]  # Exclude self-correlation
         for other_column in top_correlations:
             correlation_value = correlation_matrix.loc[column, other_column]
             print(f"{other_column}: {correlation_value:.4f}")

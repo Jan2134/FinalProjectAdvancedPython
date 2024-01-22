@@ -1,7 +1,6 @@
 """
 Script to clean null values
 """
-import pandas as pd
 
 
 def handle_null_values(df):
