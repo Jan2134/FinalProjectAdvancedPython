@@ -158,12 +158,73 @@ def StressfactorAnalysis(df):
 
 def plot_two_variables(df, variable1, variable2):
     """
-    Function to plot two variables in a scatter plot
+    Function to plot two variables in a scatter plot, making the weight of each point more visible
     """
+    print("\n\nGraph in output folder\n\n")
     plt.figure(figsize=(8, 6))
-    sns.scatterplot(x=variable1, y=variable2, data=df)
-    plt.title(f"Scatter Plot between {variable1} and {variable2}")
+
+    # Create a list of marker sizes based on the values of variable2
+    marker_sizes = [50 * (i / np.max(df[variable2])) for i in df[variable2]]
+
+    # Create a colormap based on the weights
+    cmap = plt.cm.viridis  # You can choose a different colormap
+
+    # Normalize the weights to be in the range [0, 1]
+    norm = plt.Normalize(vmin=min(marker_sizes), vmax=max(marker_sizes))
+
+    # Create the scatter plot with size-weighted markers and varied color intensity
+    sc = plt.scatter(
+        x=df[variable1],
+        y=df[variable2],
+        s=marker_sizes,
+        c=marker_sizes,
+        cmap=cmap,
+        alpha=0.7,
+        norm=norm,
+    )
+
+    # Add a colorbar to the plot
+    cbar = plt.colorbar(sc, orientation="vertical")
+    cbar.set_label("Weight")
+
+    plt.title(f"Scatter Plot with Size-Weighted Markers between {variable1} and {variable2}")
     plt.xlabel(variable1)
     plt.ylabel(variable2)
-    print("\n\nGraph in output folder\n\n")
     plt.savefig(os.path.join("outputs", f"scatter_plot_{variable1}_{variable2}.png"))
+
+
+def plot_two_variables_after_filtering(filtered_df, variable1, variable2):
+    """
+    Function to plot two variables in a scatter plot, making the weight of each point more visible
+    """
+    print("\n\nGraph in output folder\n\n")
+    plt.figure(figsize=(8, 6))
+
+    # Create a list of marker sizes based on the values of variable2
+    marker_sizes = [50 * (i / np.max(filtered_df[variable2])) for i in filtered_df[variable2]]
+
+    # Create a colormap based on the weights
+    cmap = plt.cm.viridis  # You can choose a different colormap
+
+    # Normalize the weights to be in the range [0, 1]
+    norm = plt.Normalize(vmin=min(marker_sizes), vmax=max(marker_sizes))
+
+    # Create the scatter plot with size-weighted markers and varied color intensity
+    sc = plt.scatter(
+        x=filtered_df[variable1],
+        y=filtered_df[variable2],
+        s=marker_sizes,
+        c=marker_sizes,
+        cmap=cmap,
+        alpha=0.7,
+        norm=norm,
+    )
+
+    # Add a colorbar to the plot
+    cbar = plt.colorbar(sc, orientation="vertical")
+    cbar.set_label("Weight")
+
+    plt.title(f"Scatter Plot with Size-Weighted Markers between {variable1} and {variable2}")
+    plt.xlabel(variable1)
+    plt.ylabel(variable2)
+    plt.savefig(os.path.join("outputs", f"filtered_scatter_plot_{variable1}_{variable2}.png"))

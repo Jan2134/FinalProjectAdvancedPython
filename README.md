@@ -163,3 +163,20 @@ _Stress level and self esteem._
 _Stress level and future carrer concerns._<br>
 --<br>
 If we now filter that data and then plot it, it becomes more evident.
+
+For exapmple, filtering the anxiety level for smaller than 8 should show major imporvemens on the stress level in the plot:
+
+    python scripts/main_script.py -id dataset/StressLevelDataset.csv -f anxiety_level -small 8 -plot -var1 stress_level -var2 anxiety_level
+This print the graph in the output but more importantly, it shows the filtered csv. From that can be decucted that the stress level is more often close to zero. <br> 
+<br>Further filters and plot can be applied and the correlations further checked.
+
+--<br>
+Lastly, it is possible to conduct a regression with the model to predict future outcomes and check how much variablility can be explained with the target variable. It can be done like this:
+
+    python scripts/main_script.py -id dataset/StressLevelDataset.csv -reg
+...and should give the followin output: <br>
+Mean Squared Error: 0.14076890911661943 <br>
+R-squared: 0.7891624570247755
+
+![alt text](https://github.com/Jan2134/FinalProjectAdvancedPython/blob/testing/outputs/Regression.png?raw=true)
+In this case, an MSE of 0.1407 indicates that, on average, the squared difference between the actual and predicted stress levels is quite low. An R-squared value of 0.7891 suggests that approximately 78.91% of the variability in the stress levels can be explained by the independent variables in your dataset. This is a relatively high value, indicating that the model fits the data well. The outcome might vary slightly every time. The graph (in the outputs) suggests that the model is able to make fairly accurate predictions about stress levels. However, there is still some variation between the actual and predicted stress levels. This could be due to a number of factors, such as the complexity of the relationship between stress levels and the other variables in the model, or the presence of outliers in the data.

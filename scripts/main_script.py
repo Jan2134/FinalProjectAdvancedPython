@@ -8,6 +8,7 @@ import click
 if __name__ == "__main__":
     from plotting import StressfactorAnalysis
     from plotting import plot_two_variables
+    from plotting import plot_two_variables_after_filtering
     from stats import calculate_correlation_matrix
     from filtering import Filtering
     from regression import perform_regression
@@ -80,7 +81,7 @@ def main(
             filtered_df = df
 
         if plotting and variable1 and variable2:
-            plot_two_variables(filtered_df, variable1, variable2)
+            plot_two_variables_after_filtering(filtered_df, variable1, variable2)
     if plotting:
         if plot_main:
             StressfactorAnalysis(df)
