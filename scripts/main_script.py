@@ -35,7 +35,7 @@ def load_dataset(filename):
     "-corr",
     "--correlation",
     is_flag=True,
-    help="Show correlation matrix and common factors",
+    help="Show correlation heatmap & common factors",
 )
 @click.option("-f", "--filtering", help="Filter dataset")
 @click.option("-big", "--bigger_than", help="Filter colums for bigger than x")
