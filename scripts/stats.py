@@ -10,9 +10,8 @@ import os
 def calculate_correlation_matrix(df, n=3):
     """
     Calculate the correlation matrix for all columns in the DataFrame and show a heatmap.
-    Than show the most common correlations of each other.
+    Then show the most common correlations of each other.
     """
-    # Convert non-numeric columns to numeric types
     df_numeric = df.apply(pd.to_numeric, errors="coerce")
     df_numeric = df_numeric.select_dtypes(include=["number"])
 
@@ -28,6 +27,7 @@ def calculate_correlation_matrix(df, n=3):
     print("\n\nHeatmap in output folder\n\n")
 
     # Show three highest correlations for each column
+    top_correlations_info = {}
     for column in correlation_matrix.columns:
         print(f"\nTop {n} correlations for column '{column}':")
         correlations = correlation_matrix[column].abs().sort_values(ascending=False)
@@ -35,3 +35,9 @@ def calculate_correlation_matrix(df, n=3):
         for other_column in top_correlations:
             correlation_value = correlation_matrix.loc[column, other_column]
             print(f"{other_column}: {correlation_value:.4f}")
+
+            if column not in top_correlations_info:
+                top_correlations_info[column] = []
+            top_correlations_info[column].append((other_column, correlation_value))
+
+    return correlation_matrix, top_correlations_info

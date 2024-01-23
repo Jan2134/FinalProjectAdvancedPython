@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import os
 
 
-def perform_regression(df):
+def perform_regression(df, output_filename="Regression.png"):
     """
     Perform regression analysis
     """
@@ -35,5 +35,4 @@ def perform_regression(df):
     plt.xlabel("Actual Stress Level")
     plt.ylabel("Predicted Stress Level")
     plt.title("Actual vs. Predicted Stress Level")
-    plt.savefig(os.path.join("outputs", "Regression.png"))
-    print("\n\nRegression plot in output folder\n\n")
+    plt.savefig(os.path.join("outputs", output_filename))

@@ -126,33 +126,33 @@ def StressfactorAnalysis(df):
     ax.set_ylabel("Number of students")
     plt.savefig(os.path.join("outputs", "negative_experiences_plot.png"))
 
-  # Choose which factor has the biggest impact on stress level within each variable subgroup.
+    # Choose which factor has the biggest impact on stress level within each variable subgroup.
     correl = df.corr()
     print("\n\nGraph in output folder\n\n")
     print(
         "In mental variables",
         round(correl.iloc[-1:, 0:4].abs().max(), 2).index.max().replace("_", " "),
-        "has the biggest impact."
+        "has the biggest impact.",
     )
     print(
         "In physical variables",
         round(correl.iloc[-1:, 4:8].abs().max(), 2).index.max().replace("_", " "),
-        "has the biggest impact."
+        "has the biggest impact.",
     )
     print(
         "In environmental variables",
         round(correl.iloc[-1:, 8:12].abs().max(), 2).index.max().replace("_", " "),
-        "has the biggest impact."
+        "has the biggest impact.",
     )
     print(
         "In academic variables",
         round(correl.iloc[-1:, 12:16].abs().max(), 2).index.max().replace("_", " "),
-        "has the biggest impact."
+        "has the biggest impact.",
     )
     print(
         "In social variables",
         round(correl.iloc[-1:, 16:20].abs().max(), 2).index.max().replace("_", " "),
-        "has the biggest impact."
+        "has the biggest impact.",
     )
 
 
@@ -167,7 +167,7 @@ def plot_two_variables(df, variable1, variable2):
     marker_sizes = [50 * (i / np.max(df[variable2])) for i in df[variable2]]
 
     # Create a colormap based on the weights
-    cmap = plt.cm.viridis  # You can choose a different colormap
+    cmap = plt.cm.viridis
 
     # Normalize the weights to be in the range [0, 1]
     norm = plt.Normalize(vmin=min(marker_sizes), vmax=max(marker_sizes))
@@ -187,7 +187,9 @@ def plot_two_variables(df, variable1, variable2):
     cbar = plt.colorbar(sc, orientation="vertical")
     cbar.set_label("Weight")
 
-    plt.title(f"Scatter Plot with Size-Weighted Markers between {variable1} and {variable2}")
+    plt.title(
+        f"Scatter Plot with Size-Weighted Markers between {variable1} and {variable2}"
+    )
     plt.xlabel(variable1)
     plt.ylabel(variable2)
     plt.savefig(os.path.join("outputs", f"scatter_plot_{variable1}_{variable2}.png"))
@@ -201,10 +203,12 @@ def plot_two_variables_after_filtering(filtered_df, variable1, variable2):
     plt.figure(figsize=(8, 6))
 
     # Create a list of marker sizes based on the values of variable2
-    marker_sizes = [50 * (i / np.max(filtered_df[variable2])) for i in filtered_df[variable2]]
+    marker_sizes = [
+        50 * (i / np.max(filtered_df[variable2])) for i in filtered_df[variable2]
+    ]
 
     # Create a colormap based on the weights
-    cmap = plt.cm.viridis  # You can choose a different colormap
+    cmap = plt.cm.viridis
 
     # Normalize the weights to be in the range [0, 1]
     norm = plt.Normalize(vmin=min(marker_sizes), vmax=max(marker_sizes))
@@ -224,7 +228,11 @@ def plot_two_variables_after_filtering(filtered_df, variable1, variable2):
     cbar = plt.colorbar(sc, orientation="vertical")
     cbar.set_label("Weight")
 
-    plt.title(f"Scatter Plot with Size-Weighted Markers between {variable1} and {variable2}")
+    plt.title(
+        f"Scatter Plot with Size-Weighted Markers between {variable1} and {variable2}"
+    )
     plt.xlabel(variable1)
     plt.ylabel(variable2)
-    plt.savefig(os.path.join("outputs", f"filtered_scatter_plot_{variable1}_{variable2}.png"))
+    plt.savefig(
+        os.path.join("outputs", f"filtered_scatter_plot_{variable1}_{variable2}.png")
+    )
