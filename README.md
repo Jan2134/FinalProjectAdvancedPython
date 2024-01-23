@@ -115,7 +115,7 @@ To start it makes a lot of sense to print the "overview graph" related to all th
     python scripts/main_script.py -id dataset/StressLevelDataset.csv -plot -main
 
 should give the following output:
-![Alt text](https://file%2B.vscode-resource.vscode-cdn.net/Users/jansternberg/Desktop/Advanced%20python/6%20Repository%20and%20final/FinalProjectAdvancedPython/outputs/negative_experiences_plot.png?version%3D1706000795655)
+![alt text](https://github.com/Jan2134/FinalProjectAdvancedPython/blob/testing/outputs/negative_experiences_plot.png?raw=true)
 
 
 Graph in output folder
