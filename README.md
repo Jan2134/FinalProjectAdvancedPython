@@ -180,3 +180,6 @@ R-squared: 0.7891624570247755
 
 ![alt text](https://github.com/Jan2134/FinalProjectAdvancedPython/blob/testing/outputs/Regression.png?raw=true)
 In this case, an MSE of 0.1407 indicates that, on average, the squared difference between the actual and predicted stress levels is quite low. An R-squared value of 0.7891 suggests that approximately 78.91% of the variability in the stress levels can be explained by the independent variables in your dataset. This is a relatively high value, indicating that the model fits the data well. The outcome might vary slightly every time. The graph (in the outputs) suggests that the model is able to make fairly accurate predictions about stress levels. However, there is still some variation between the actual and predicted stress levels. This could be due to a number of factors, such as the complexity of the relationship between stress levels and the other variables in the model, or the presence of outliers in the data.
+
+<br><br>
+# 2. Testing

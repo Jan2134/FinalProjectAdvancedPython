@@ -4,15 +4,18 @@ Main script to execute the code through the CLI
 
 import pandas as pd
 import click
-
 if __name__ == "__main__":
-    from plotting import StressfactorAnalysis
-    from plotting import plot_two_variables
-    from plotting import plot_two_variables_after_filtering
+    from plotting import StressfactorAnalysis, plot_two_variables, plot_two_variables_after_filtering
     from stats import calculate_correlation_matrix
     from filtering import Filtering
     from regression import perform_regression
     from clean_data import handle_null_values
+else:
+    from scripts.plotting import StressfactorAnalysis, plot_two_variables, plot_two_variables_after_filtering
+    from scripts.stats import calculate_correlation_matrix
+    from scripts.filtering import Filtering
+    from scripts.regression import perform_regression
+    from scripts.clean_data import handle_null_values
 
 
 def load_dataset(filename):
