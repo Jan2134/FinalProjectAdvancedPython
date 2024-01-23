@@ -4,7 +4,7 @@ Script to test plotting
 import unittest
 import pandas as pd
 from scripts.plotting import (
-    StressfactorAnalysis,
+    stress_factor_analysis,
     plot_two_variables,
     plot_two_variables_after_filtering,
 )
@@ -43,7 +43,7 @@ class TestPlottingFunctions(unittest.TestCase):
 
     @patch("scripts.plotting.plt.savefig")
     def test_stressfactor_analysis(self, mock_savefig):
-        StressfactorAnalysis(self.df)
+        stress_factor_analysis(self.df)
 
     @patch("scripts.plotting.plt.savefig")
     def test_plot_two_variables(self, mock_savefig):

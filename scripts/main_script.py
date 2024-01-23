@@ -4,14 +4,23 @@ Main script to execute the code through the CLI
 
 import pandas as pd
 import click
+
 if __name__ == "__main__":
-    from plotting import stress_factor_analysis, plot_two_variables, plot_two_variables_after_filtering
+    from plotting import (
+        stress_factor_analysis,
+        plot_two_variables,
+        plot_two_variables_after_filtering,
+    )
     from stats import calculate_correlation_matrix
     from filtering import Filtering
     from regression import perform_regression
     from clean_data import handle_null_values
 else:
-    from scripts.plotting import stress_factor_analysis, plot_two_variables, plot_two_variables_after_filtering
+    from scripts.plotting import (
+        stress_factor_analysis,
+        plot_two_variables,
+        plot_two_variables_after_filtering,
+    )
     from scripts.stats import calculate_correlation_matrix
     from scripts.filtering import Filtering
     from scripts.regression import perform_regression
@@ -25,7 +34,7 @@ def load_dataset(filename):
     extension = filename.rsplit(".", 1)[-1]
     if extension == "csv":
         return pd.read_csv(filename)
-    raise ValueError(f"Invalid file extension: {extension}. Expected 'csv'.")
+    raise TypeError(f"Invalid extension: {extension}. Only CSV files are supported.")
 
 
 @click.command(short_help="Parser to import dataset")

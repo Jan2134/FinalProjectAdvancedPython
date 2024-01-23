@@ -15,14 +15,16 @@ class TestDataset(unittest.TestCase):
         """
         Path to dataset
         """
-        self.path = "datasets/BooksDatasetClean.cs"
+        self.path = "dataset/StressLevelDataset.csv"
 
     def test_extansion_fail(self):
         """
-        Test for extansion of the dataset
+        Test for extension of the dataset
         """
-        with self.assertRaises(TypeError):
-            load_dataset(self.path)
+        with self.assertRaises(TypeError) as context:
+            load_dataset("dataset/StressLevelDataset.xlsx")
+
+        self.assertIn("Invalid extension", str(context.exception))
 
 
 if __name__ == "__main__":
