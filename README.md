@@ -71,7 +71,7 @@ From here on, there are various options to discover the dataset from the command
 This instance will print the filtered dataset.
 <br>
 
-    python scripts/main_script.py -id       dataset/StressLevelDataset.csv -f filter_column -big numerical_value
+    python scripts/main_script.py -id dataset/StressLevelDataset.csv -f filter_column -big numerical_value
 _To filter a column for a value bigger than the given value._ <br>
 <br>
     
