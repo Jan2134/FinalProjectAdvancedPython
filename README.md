@@ -126,3 +126,40 @@ In physical variables sleep quality has the biggest impact. <br>
 In environmental variables safety has the biggest impact. <br>
 In academic variables teacher student relationship has the biggest impact. <br>
 In social variables social support has the biggest impact. <br>
+
+--<br>
+Now, given that we know that students have the most problems with mental factors, we can further asses the correlations between the factors to have a more coherent perspective:
+
+     python scripts/main_script.py -id dataset/StressLevelDataset.csv -corr
+
+This gives the following graph:
+![alt text](https://github.com/Jan2134/FinalProjectAdvancedPython/blob/testing/outputs/correlation_matrix_heatmap.png?raw=true)
+
+...and a longer print. Most importantly:
+1. Stress Level and Anxiety Level: The anxiety level has the highest correlation with stress level (0.7368). This suggests that there is a strong positive relationship between anxiety levels and stress levels among students. It implies that as anxiety levels increase, stress levels tend to increase as well.
+Self-Esteem and Stress Level:
+
+2. Self-esteem exhibits a strong negative correlation with stress level (-0.7562). This indicates that higher self-esteem is associated with lower stress levels. As self-esteem increases, stress levels tend to decrease, highlighting the importance of self-esteem in managing stress.
+3. Future Career Concerns and Stress Level: Future career concerns also show a substantial positive correlation with stress level (0.7170). Students who express more concerns about their future careers tend to experience higher stress levels. This insight emphasizes the impact of future uncertainties on the stress levels of students.
+4. Sleep Quality and Stress Level: Sleep quality demonstrates a significant negative correlation with stress level (-0.7491). This implies that students with better sleep quality tend to experience lower stress levels. It highlights the importance of adequate and quality sleep in mitigating stress among students.
+
+5. Social Support and Blood Pressure: Social support shows a strong negative correlation with blood pressure (-0.7525). This suggests that individuals with higher levels of social support tend to have lower blood pressure. Social support may act as a protective factor against elevated blood pressure, indicating the potential health benefits of a supportive social environment.
+
+--<br>
+Let's now see that with graphs and filters. First, let's plot the three most prominant relationships from above: <br>
+
+    python scripts/main_script.py -id dataset/StressLevelDataset.csv -plot -var1 stress_level -var2 anxiety_level
+![alt text](https://github.com/Jan2134/FinalProjectAdvancedPython/blob/testing/outputs/scatter_plot_stress_level_anxiety_level.png?raw=true)
+_Stress level and anxiety level._
+<br>
+
+    python scripts/main_script.py -id dataset/StressLevelDataset.csv -plot -var1 stress_level -var2 self_esteem
+![alt text](https://github.com/Jan2134/FinalProjectAdvancedPython/blob/testing/outputs/scatter_plot_stress_level_self_esteem.png?raw=true)
+_Stress level and self esteem._
+<br>
+
+    python scripts/main_script.py -id dataset/StressLevelDataset.csv -plot -var1 stress_level -var2 future_career_concerns
+![alt text](https://github.com/Jan2134/FinalProjectAdvancedPython/blob/testing/outputs/scatter_plot_stress_level_future_career_concerns.png?raw=true)
+_Stress level and future carrer concerns._<br>
+--<br>
+If we now filter that data and then plot it, it becomes more evident.
