@@ -1,0 +1,10 @@
+[FORMAT]
+max-line-length=150
+
+[design]
+max-locals = 28
+
+[MASTER]
+ignore = main_script.py
+max-statements=70
+max-branches=20

@@ -35,7 +35,7 @@ In this project, I analyze a dataset that deals with stress factors among studen
     - [CLI options](#cli-options)
     - [Gaining insights](#gaining-insights)
 2. [Testing](#2-testing)
-3. [Linting and Others](#3-lynting-and-others)
+3. [Linting and Others](#3-linting-and-others)
 
 
 <br><br>
@@ -183,3 +183,38 @@ In this case, an MSE of 0.1407 indicates that, on average, the squared differenc
 
 <br><br>
 # 2. Testing
+To test the file it is possible with unittest. For that enter:
+
+    make test
+
+No error should occur. <br>
+<br>
+Furthermore, it can be tested with pytest by entering:
+
+    pytest
+One Warning does occurr here for the regression model: <br>
+"R^2 score is not well-defined with less than two samples."
+This issue was not fixable without major changes. <br>
+<br>
+Lastly, also the test coverage can be shown by:
+
+    python -m unittest coverage
+following:
+
+    coverage report
+The coverage should be for all scripts around 100% besides the main script containing non-testable @click.commands. <br>
+<br>
+**Please note that for the tests a new plot is created that does not contain any valuable information for the dataset.**
+<br>
+<br>
+# 3. Linting and others
+The pylinting rating for the document should be a 10/10. For that, some adjustments needed to be done to the scripts, e.g. the plotting colormapping needed to be excluded and since there were so many pylint-errors in the main_script that could not be fixed (such as imports), I disabled linting for the main_scipt. To see the score, enter:
+
+    pylint scripts
+
+<br>
+Running flake8 on the script should also not display any errors:
+
+    flake8
+<br>
+Lastly, the script contains an action file from github testing the file every time before uploading. The file is in github/workflows/python-app.yml.

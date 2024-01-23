@@ -1,10 +1,10 @@
 """
 Statistically show dataset
 """
+import os
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import os
 
 
 def calculate_correlation_matrix(df, n=3):

@@ -1,14 +1,14 @@
 """
 Scripts to plot
 """
+import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import os
 
 
-def StressfactorAnalysis(df):
+def stress_factor_analysis(df):
     """
     Function to plot the overview graph of all Stressfactors and print the most
     common ones. Differntiation of mental, physical, environmental, academic and social
@@ -23,7 +23,7 @@ def StressfactorAnalysis(df):
     mental_pos_count = {}
     for column, row in mental_pos.items():
         # If it is anxiety or depression we count the people who are in the upper 40%
-        if column == "anxiety_level" or column == "depression":
+        if column in {"anxiety_level", "depression"}:
             count = row > np.percentile(mental_pos[column], 60)
             mental_pos_count[column] = count
         elif column == "mental_health_history":
@@ -42,11 +42,7 @@ def StressfactorAnalysis(df):
     physical_dict = {}
     for column, row in physical.items():
         # People in the upper 40% for headache, breathing problems or blood pressure get counted
-        if (
-            column == "headache"
-            or column == "breathing problem"
-            or column == "blood_pressure"
-        ):
+        if column in {"headache", "breathing problem", "blood_pressure"}:
             count = row > np.percentile(physical[column], 60)
             physical_dict[column] = count
         else:
@@ -85,7 +81,7 @@ def StressfactorAnalysis(df):
     acad_dict = {}
     for column, row in acad.items():
         # People in the upper 40% for study load and future career concners get counted
-        if column == "study_load" or column == "future_career_concerns":
+        if column in {"study_load", "future_career_concerns"}:
             count = row > np.percentile(acad[column], 60)
             acad_dict[column] = count
         else:
@@ -101,11 +97,7 @@ def StressfactorAnalysis(df):
     social_dict = {}
     for column, row in social.items():
         # People in the upper 40% for peer pressure, extracurricular activities and bullying get counted
-        if (
-            column == "peer_pressure"
-            or column == "extracurricular_activities"
-            or column == "bullying"
-        ):
+        if column in {"peer_pressure", "extracurricular_activities", "bullying"}:
             count = row > np.percentile(social[column], 60)
             social_dict[column] = count
         else:
@@ -167,6 +159,7 @@ def plot_two_variables(df, variable1, variable2):
     marker_sizes = [50 * (i / np.max(df[variable2])) for i in df[variable2]]
 
     # Create a colormap based on the weights
+    # pylint: disable=E1101
     cmap = plt.cm.viridis
 
     # Normalize the weights to be in the range [0, 1]
@@ -208,6 +201,7 @@ def plot_two_variables_after_filtering(filtered_df, variable1, variable2):
     ]
 
     # Create a colormap based on the weights
+    # pylint: disable=E1101
     cmap = plt.cm.viridis
 
     # Normalize the weights to be in the range [0, 1]

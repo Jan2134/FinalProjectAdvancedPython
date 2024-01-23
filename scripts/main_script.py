@@ -5,13 +5,13 @@ Main script to execute the code through the CLI
 import pandas as pd
 import click
 if __name__ == "__main__":
-    from plotting import StressfactorAnalysis, plot_two_variables, plot_two_variables_after_filtering
+    from plotting import stress_factor_analysis, plot_two_variables, plot_two_variables_after_filtering
     from stats import calculate_correlation_matrix
     from filtering import Filtering
     from regression import perform_regression
     from clean_data import handle_null_values
 else:
-    from scripts.plotting import StressfactorAnalysis, plot_two_variables, plot_two_variables_after_filtering
+    from scripts.plotting import stress_factor_analysis, plot_two_variables, plot_two_variables_after_filtering
     from scripts.stats import calculate_correlation_matrix
     from scripts.filtering import Filtering
     from scripts.regression import perform_regression
@@ -25,11 +25,11 @@ def load_dataset(filename):
     extension = filename.rsplit(".", 1)[-1]
     if extension == "csv":
         return pd.read_csv(filename)
-    raise TypeError(f"The extension is {extension}, not csv. Try again.")
+    raise ValueError(f"Invalid file extension: {extension}. Expected 'csv'.")
 
 
 @click.command(short_help="Parser to import dataset")
-@click.option("-id", "--input", required=True, help="File to import")
+@click.option("-id", "--data", required=True, help="File to import")
 @click.option("-clean", "--cleaning", is_flag=True, help="Clean dataset")
 @click.option("-plot", "--plotting", is_flag=True, help="Plotdata")
 @click.option("-main", "--plot_main", is_flag=True, help="Plot the overview graph")
@@ -48,7 +48,7 @@ def load_dataset(filename):
     "-reg", "--regression", is_flag=True, help="Perform linear regression analysis"
 )
 def main(
-    input,
+    data,
     cleaning,
     plotting,
     plot_main,
@@ -63,7 +63,7 @@ def main(
     """
     Main execution function
     """
-    df = load_dataset(input)
+    df = load_dataset(data)
 
     if cleaning:
         df = handle_null_values(df)
@@ -87,7 +87,7 @@ def main(
             plot_two_variables_after_filtering(filtered_df, variable1, variable2)
     if plotting:
         if plot_main:
-            StressfactorAnalysis(df)
+            stress_factor_analysis(df)
         if variable1 and variable2:
             plot_two_variables(df, variable1, variable2)
     if regression:
